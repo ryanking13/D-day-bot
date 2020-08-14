@@ -14,4 +14,11 @@ def post(message):
         access_token_secret=config.TWITTER_ACCESS_TOKEN_SECRET,
     )
 
+    try:
+        api.VerifyCredentials()
+    except:
+        print("[ERROR] Invalid API token")
+        print(message)
+        return
+
     api.PostUpdate(status=message)
